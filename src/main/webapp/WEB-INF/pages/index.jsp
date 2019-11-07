@@ -16,6 +16,12 @@
             <p><a href="${adminUrl}">Click</a> for admin page</p>
         </c:if>
 
+        <c:url value="/period" var="periodUrl" />
+        <p><a href="${periodUrl}">Click</a> for admin page2</p>
+
+
+
+
         <c:url value="/update" var="updateUrl" />
         <form action="${updateUrl}" method="POST">
             E-mail:<br/><input type="text" name="email" value="${email}" /><br/>

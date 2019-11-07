@@ -1,13 +1,18 @@
-package Users;
+package home_accounting.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import home_accounting.repository.UserRepository;
+import home_accounting.UserRole;
+import home_accounting.entity.CustomUser;
 
 import java.util.List;
 
+
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -20,6 +25,9 @@ public class UserService {
     public CustomUser findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
+
+
+    public UserService(){}
 
     @Transactional
     public void deleteUsers(long[] ids) {

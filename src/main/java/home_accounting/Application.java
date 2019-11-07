@@ -1,17 +1,21 @@
-package Users;
+package home_accounting;
+
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import home_accounting.services.UserService;
 
 @SpringBootApplication
 public class Application {
+
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
+   @Bean
     public CommandLineRunner demo(final UserService userService) {
         return new CommandLineRunner() {
             @Override

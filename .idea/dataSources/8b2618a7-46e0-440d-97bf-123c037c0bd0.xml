@@ -18,7 +18,8 @@
     </database>
     <schema id="6" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2019-10-14.14:09:03.134</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2019-11-07.10:54:28.089</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1275</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -37,5 +38,307 @@
     <schema id="11" parent="2" name="information_schema">
       <ObjectId>12113</ObjectId>
     </schema>
+    <sequence id="12" parent="6" name="hibernate_sequence">
+      <ObjectId>34177</ObjectId>
+      <StateNumber>1275</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="13" parent="6" name="accounting">
+      <ObjectId>34103</ObjectId>
+      <StateNumber>1269</StateNumber>
+    </table>
+    <table id="14" parent="6" name="accounting_period">
+      <ObjectId>34108</ObjectId>
+      <StateNumber>1271</StateNumber>
+    </table>
+    <table id="15" parent="6" name="custom_user">
+      <ObjectId>34116</ObjectId>
+      <StateNumber>1274</StateNumber>
+    </table>
+    <table id="16" parent="6" name="home_accounting">
+      <ObjectId>34124</ObjectId>
+      <StateNumber>1272</StateNumber>
+    </table>
+    <table id="17" parent="6" name="plan_expenses">
+      <ObjectId>34132</ObjectId>
+      <StateNumber>1273</StateNumber>
+    </table>
+    <table id="18" parent="6" name="plan_gains">
+      <ObjectId>34137</ObjectId>
+      <StateNumber>1274</StateNumber>
+    </table>
+    <column id="19" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1262</StateNumber>
+    </column>
+    <column id="20" parent="13" name="accounting_period_id">
+      <Position>2</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1262</StateNumber>
+    </column>
+    <column id="21" parent="13" name="custom_user_id">
+      <Position>3</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1262</StateNumber>
+    </column>
+    <index id="22" parent="13" name="accounting_pkey">
+      <ObjectId>34106</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="13" name="accounting_pkey">
+      <ObjectId>34107</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>accounting_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="24" parent="13" name="fk_1e3djpf5cakgd2s7fyr4ujng1">
+      <ObjectId>34142</ObjectId>
+      <ColNames>accounting_period_id</ColNames>
+      <RefTableId>34108</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>accounting_period</RefTableName>
+      <RefKeyName>accounting_period_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="25" parent="13" name="fk_njw6y7c8vgx2o99juq8p8ytd0">
+      <ObjectId>34147</ObjectId>
+      <ColNames>custom_user_id</ColNames>
+      <RefTableId>34116</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>custom_user</RefTableName>
+      <RefKeyName>custom_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="26" parent="14" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1263</StateNumber>
+    </column>
+    <column id="27" parent="14" name="period">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1263</StateNumber>
+    </column>
+    <column id="28" parent="14" name="state">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1263</StateNumber>
+    </column>
+    <column id="29" parent="14" name="custom_user_id">
+      <Position>4</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1263</StateNumber>
+    </column>
+    <index id="30" parent="14" name="accounting_period_pkey">
+      <ObjectId>34114</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="31" parent="14" name="accounting_period_pkey">
+      <ObjectId>34115</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>accounting_period_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="32" parent="14" name="fk_piwabtpbqp7xaveud351h0dil">
+      <ObjectId>34152</ObjectId>
+      <ColNames>custom_user_id</ColNames>
+      <RefTableId>34116</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>custom_user</RefTableName>
+      <RefKeyName>custom_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="33" parent="15" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <column id="34" parent="15" name="email">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <column id="35" parent="15" name="login">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <column id="36" parent="15" name="password">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <column id="37" parent="15" name="phone">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <column id="38" parent="15" name="role">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1264</StateNumber>
+    </column>
+    <index id="39" parent="15" name="custom_user_pkey">
+      <ObjectId>34122</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="40" parent="15" name="custom_user_pkey">
+      <ObjectId>34123</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>custom_user_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="41" parent="16" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <column id="42" parent="16" name="description">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <column id="43" parent="16" name="type">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <column id="44" parent="16" name="value">
+      <Position>4</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <column id="45" parent="16" name="accounting_period_id">
+      <Position>5</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <column id="46" parent="16" name="custom_user_id">
+      <Position>6</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1265</StateNumber>
+    </column>
+    <index id="47" parent="16" name="home_accounting_pkey">
+      <ObjectId>34130</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="48" parent="16" name="home_accounting_pkey">
+      <ObjectId>34131</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>home_accounting_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="16" name="fk_3himtcmbiy6ah5lebjtxucmh9">
+      <ObjectId>34157</ObjectId>
+      <ColNames>accounting_period_id</ColNames>
+      <RefTableId>34108</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>accounting_period</RefTableName>
+      <RefKeyName>accounting_period_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="50" parent="16" name="fk_d7g8soc25lxe73j3d8wd104gk">
+      <ObjectId>34162</ObjectId>
+      <ColNames>custom_user_id</ColNames>
+      <RefTableId>34116</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>custom_user</RefTableName>
+      <RefKeyName>custom_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="51" parent="17" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1266</StateNumber>
+    </column>
+    <column id="52" parent="17" name="description">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1266</StateNumber>
+    </column>
+    <column id="53" parent="17" name="value">
+      <Position>3</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1266</StateNumber>
+    </column>
+    <column id="54" parent="17" name="custom_user_id">
+      <Position>4</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1266</StateNumber>
+    </column>
+    <index id="55" parent="17" name="plan_expenses_pkey">
+      <ObjectId>34135</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="56" parent="17" name="plan_expenses_pkey">
+      <ObjectId>34136</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>plan_expenses_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="57" parent="17" name="fk_4dlp6b2twtjdg3ni2yaamrk3c">
+      <ObjectId>34167</ObjectId>
+      <ColNames>custom_user_id</ColNames>
+      <RefTableId>34116</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>custom_user</RefTableName>
+      <RefKeyName>custom_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="58" parent="18" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1267</StateNumber>
+    </column>
+    <column id="59" parent="18" name="description">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>1267</StateNumber>
+    </column>
+    <column id="60" parent="18" name="value">
+      <Position>3</Position>
+      <DataType>bigint|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1267</StateNumber>
+    </column>
+    <column id="61" parent="18" name="custom_user_id">
+      <Position>4</Position>
+      <DataType>bigint|0</DataType>
+      <StateNumber>1267</StateNumber>
+    </column>
+    <index id="62" parent="18" name="plan_gains_pkey">
+      <ObjectId>34140</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="63" parent="18" name="plan_gains_pkey">
+      <ObjectId>34141</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>plan_gains_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="64" parent="18" name="fk_1n5hubryil4wup7kspfxador9">
+      <ObjectId>34172</ObjectId>
+      <ColNames>custom_user_id</ColNames>
+      <RefTableId>34116</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>custom_user</RefTableName>
+      <RefKeyName>custom_user_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

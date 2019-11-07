@@ -1,4 +1,4 @@
-package Users;
+package home_accounting;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

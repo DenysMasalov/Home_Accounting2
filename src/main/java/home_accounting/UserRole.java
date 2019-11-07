@@ -1,4 +1,4 @@
-package Users;
+package home_accounting;
 
 public enum UserRole {
     ADMIN, USER;

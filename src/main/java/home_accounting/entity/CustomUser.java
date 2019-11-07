@@ -1,7 +1,8 @@
-package Users;
+package home_accounting.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import home_accounting.UserRole;
 
 import javax.persistence.*;
 

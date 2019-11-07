@@ -1,5 +1,8 @@
-package Users;
+package home_accounting;
 
+import home_accounting.entity.AccountingPeriod;
+import home_accounting.services.AccountingPeriodService;
+import home_accounting.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import home_accounting.entity.CustomUser;
 
 import java.util.Collection;
 
@@ -17,6 +21,9 @@ import java.util.Collection;
 public class MyController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AccountingPeriodService accountingPeriodService;
 
     @Autowired
     private ShaPasswordEncoder passwordEncoder;
@@ -83,6 +90,23 @@ public class MyController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/addperiod", method = RequestMethod.POST)
+    public String newPeriod(@RequestParam String period,
+                         Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+
+        if ("".equals(period) ||
+                !accountingPeriodService.addPeriod(login, period)) {
+            return "newperiod";
+        }
+
+        return "redirect:/addperiod";
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam(name = "toDelete[]", required = false)
                                      long[] ids,
@@ -104,10 +128,21 @@ public class MyController {
         return "register";
     }
 
+    @RequestMapping("/newperiod")
+    public String newperiod() {
+        return "newperiod";
+    }
+
     @RequestMapping("/admin")
     public String admin(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "admin";
+    }
+
+    @RequestMapping("/period")
+    public String accountingPeriod(Model model) {
+        model.addAttribute("periods", accountingPeriodService.getAllPeriods());
+        return "periods";
     }
 
     @RequestMapping("/unauthorized")
@@ -116,4 +151,5 @@ public class MyController {
         model.addAttribute("login", user.getUsername());
         return "unauthorized";
     }
+
 }
