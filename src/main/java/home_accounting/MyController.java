@@ -28,6 +28,12 @@ public class MyController {
     private PlainGainsService plainGainsService;
 
     @Autowired
+    private AccountingService accountingService;
+
+    @Autowired
+    private HomeAccountingService homeAccountingService;
+
+    @Autowired
     private PlainExpensesService plainExpensesService;
 
     @Autowired
@@ -227,6 +233,28 @@ public class MyController {
         String login = user.getUsername();
         model.addAttribute("planexpenses", plainExpensesService.getAllForUser(login));
         return "planexpenses";
+    }
+
+    @RequestMapping("/homeaccounting")
+    public String homeAccountings(Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+        model.addAttribute("homeaccountings", homeAccountingService.getAllForUser(login));
+        return "homeaccounting";
+    }
+
+    @RequestMapping("/accountinghistory")
+    public String accountings(Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+        model.addAttribute("accountings", accountingService.getAllForUser(login));
+        return "accounting";
     }
 
     @RequestMapping("/unauthorized")

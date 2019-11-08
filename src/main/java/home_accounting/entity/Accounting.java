@@ -13,6 +13,10 @@ public class Accounting {
     @GeneratedValue
     private Long id;
 
+    private long gainvalue;
+    private long expensevalue;
+
+
     @OneToOne
     @JoinColumn(name = "accounting_period_id")
     private AccountingPeriod accounting_period;
