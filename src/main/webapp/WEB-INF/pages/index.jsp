@@ -29,12 +29,12 @@
         <p><a href="${periodUrl}">Click</a> for accounting history</p>
 
 
-        <c:url value="/update" var="updateUrl" />
+     <!--   <c:url value="/update" var="updateUrl" />
         <form action="${updateUrl}" method="POST">
             E-mail:<br/><input type="text" name="email" value="${email}" /><br/>
             Phone:<br/><input type="text" name="phone" value="${phone}" /><br/>
             <input type="submit" value="Update" />
-        </form>
+        </form> -->
 
         <c:url value="/logout" var="logoutUrl" />
         <p>Click to logout: <a href="${logoutUrl}">LOGOUT</a></p>

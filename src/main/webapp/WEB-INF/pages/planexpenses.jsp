@@ -16,8 +16,8 @@
         <c:forEach items="${planexpenses}" var="planexpense">
             <tr>
                 <td><input type="checkbox" name="toDelete" value="${planexpense.id}" id="check_${planexpense.id}"></td>
-                <td><c:out value="${planexpense.period}"/></td>
-                <td><c:out value="${planexpense.state}"/></td>
+                <td><c:out value="${planexpense.description}"/></td>
+                <td><c:out value="${planexpense.value}"/></td>
             </tr>
         </c:forEach>
     </table>

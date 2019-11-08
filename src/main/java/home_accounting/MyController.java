@@ -127,7 +127,7 @@ public class MyController {
             return "newplangain";
         }
 
-        return "redirect:/addplangain";
+        return "redirect:/plangains";
     }
 
     @RequestMapping(value = "/addplanexpense", method = RequestMethod.POST)
@@ -145,7 +145,7 @@ public class MyController {
             return "newplanexpense";
         }
 
-        return "redirect:/planexpense";
+        return "redirect:/planexpenses";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
