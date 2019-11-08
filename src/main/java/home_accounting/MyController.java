@@ -105,7 +105,7 @@ public class MyController {
         String login = user.getUsername();
 
         if ("".equals(period) ||
-                !accountingPeriodService.addPeriod(login, period)) {
+                !accountingPeriodService.add(login, period)) {
             return "newperiod";
         }
 

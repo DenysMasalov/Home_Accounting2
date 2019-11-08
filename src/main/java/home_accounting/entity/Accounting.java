@@ -13,11 +13,11 @@ public class Accounting {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "accounting_period_id")
     private AccountingPeriod accounting_period;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "custom_user_id")
     private CustomUser custom_user;
 

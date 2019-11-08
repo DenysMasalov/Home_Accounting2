@@ -1,5 +1,6 @@
 package home_accounting.services;
 
+import home_accounting.UserRole;
 import home_accounting.enums.AccountingEnum;
 import home_accounting.entity.AccountingPeriod;
 import home_accounting.entity.HomeAccounting;
@@ -39,4 +40,17 @@ public class HomeAccountingService {
         return homeAccountingRepository.findByLoginAndPeriod(login, period);
     }
 
+    @Transactional
+    public boolean add(AccountingPeriod accounting_period,
+                       CustomUser custom_user,
+                       AccountingEnum type,
+                       String description,
+                       Long value) {
+
+        HomeAccounting homeAccounting = new HomeAccounting(accounting_period, custom_user,
+                type, description, value);
+        homeAccountingRepository.save(homeAccounting);
+
+        return true;
+    }
 }

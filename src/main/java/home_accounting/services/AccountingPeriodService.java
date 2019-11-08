@@ -1,7 +1,7 @@
 package home_accounting.services;
 
-import home_accounting.entity.AccountingPeriod;
-import home_accounting.entity.CustomUser;
+import home_accounting.entity.*;
+import home_accounting.enums.AccountingEnum;
 import home_accounting.repository.AccountingPeriodRepository;
 import home_accounting.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,22 @@ public class AccountingPeriodService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PlainGainsService plainGainsService;
+
+    @Autowired
+    private PlainExpensesService plainExpensesService;
+
+    @Autowired
+    private HomeAccountingService homeAccountingService;
+
     @Transactional(readOnly = true)
     public List<AccountingPeriod> getAllPeriods() {
         return accountingPeriodRepository.findAll();
     }
 
     @Transactional
-    public boolean addPeriod(String login, String period) {
+    public boolean add(String login, String period) {
 
         if (!userRepository.existsByLogin(login))
             return false;
@@ -38,6 +47,26 @@ public class AccountingPeriodService {
         AccountingPeriod accountingPeriod = new AccountingPeriod(customUser, period);
         accountingPeriodRepository.save(accountingPeriod);
 
+
+        List<PlanGains> planGainsList = plainGainsService.getAllForUser(login);
+        for (int i = 0; i < planGainsList.size(); i++) {
+            PlanGains planGains = planGainsList.get(i);
+            homeAccountingService.add(accountingPeriod,
+                    customUser,
+                    AccountingEnum.GAIN,
+                    planGains.getDescription(),
+                    planGains.getValue());
+        }
+
+        List<PlanExpenses> planExpensesList = plainExpensesService.getAllForUser(login);
+        for (int i = 0; i < planExpensesList.size(); i++) {
+            PlanExpenses planExpenses = planExpensesList.get(i);
+            homeAccountingService.add(accountingPeriod,
+                    customUser,
+                    AccountingEnum.EXPENSE,
+                    planExpenses.getDescription(),
+                    planExpenses.getValue());
+        }
         return true;
     }
 
