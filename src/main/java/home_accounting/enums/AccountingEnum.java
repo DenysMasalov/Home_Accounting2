@@ -1,4 +1,4 @@
-package home_accounting.entity;
+package home_accounting.enums;
 
 public enum AccountingEnum {
     GAIN, EXPENSE;

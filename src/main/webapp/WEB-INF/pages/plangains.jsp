@@ -10,14 +10,14 @@
 <body>
 <div align="center">
     <p>Click to go back: <a href="/">back</a></p>
-    <button type="button" id="add_period">Add</button>
-    <button type="button" id="delete_period">Delete</button>
+    <button type="button" id="add_">Add</button>
+    <button type="button" id="delete_">Delete</button>
     <table border="1">
-        <c:forEach items="${periods}" var="period">
+        <c:forEach items="${plangains}" var="plangain">
             <tr>
-                <td><input type="checkbox" name="toDelete" value="${period.id}" id="check_${period.id}"></td>
-                <td><c:out value="${period.period}"/></td>
-                <td><c:out value="${period.state}"/></td>
+                <td><input type="checkbox" name="toDelete" value="${plangain.id}" id="check_${plangain.id}"></td>
+                <td><c:out value="${plangain.period}"/></td>
+                <td><c:out value="${plangain.state}"/></td>
             </tr>
         </c:forEach>
     </table>
@@ -27,16 +27,16 @@
 </div>
 
 <script>
-    $('#add_period').click(function(){
-        window.location.href = "/newperiod";
+    $('#add_').click(function(){
+        window.location.href = "/newplangain";
     });
 
-    $('#delete_period').click(function(){
+    $('#delete_').click(function(){
         var data = { 'toDelete' : []};
         $(":checked").each(function() {
             data['toDelete'].push($(this).val());
         });
-        $.post("/deleteperiod", data, function(data, status) {
+        $.post("/deleteplangain", data, function(data, status) {
             window.location.reload();
         });
     });

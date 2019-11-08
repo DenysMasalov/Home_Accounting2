@@ -1,5 +1,6 @@
 package home_accounting.entity;
 
+import home_accounting.enums.AccountingEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

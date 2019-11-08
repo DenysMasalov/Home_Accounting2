@@ -17,9 +17,16 @@
         </c:if>
 
         <c:url value="/period" var="periodUrl" />
-        <p><a href="${periodUrl}">Click</a> for admin page2</p>
+        <p><a href="${periodUrl}">Click</a> for periods</p>
 
-
+        <c:url value="/plangains" var="periodUrl" />
+        <p><a href="${periodUrl}">Click</a> for plan gains</p>
+        <c:url value="/planexpenses" var="periodUrl" />
+        <p><a href="${periodUrl}">Click</a> for plan expenses</p>
+        <c:url value="/homeaccounting" var="periodUrl" />
+        <p><a href="${periodUrl}">Click</a> for home accounting</p>
+        <c:url value="/accountinghistory" var="periodUrl" />
+        <p><a href="${periodUrl}">Click</a> for accounting history</p>
 
 
         <c:url value="/update" var="updateUrl" />

@@ -1,8 +1,7 @@
 package home_accounting;
 
 import home_accounting.entity.AccountingPeriod;
-import home_accounting.services.AccountingPeriodService;
-import home_accounting.services.UserService;
+import home_accounting.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +23,12 @@ public class MyController {
 
     @Autowired
     private AccountingPeriodService accountingPeriodService;
+
+    @Autowired
+    private PlainGainsService plainGainsService;
+
+    @Autowired
+    private PlainExpensesService plainExpensesService;
 
     @Autowired
     private ShaPasswordEncoder passwordEncoder;
@@ -104,18 +109,65 @@ public class MyController {
             return "newperiod";
         }
 
-        return "redirect:/addperiod";
+        return "redirect:/period";
+    }
+
+    @RequestMapping(value = "/addplangain", method = RequestMethod.POST)
+    public String addplangain(@RequestParam String description,
+                              @RequestParam String value,
+                            Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+
+        if ("".equals(description) ||"".equals(value) ||
+                !plainGainsService.add(login, description, Long.parseLong(value))) {
+            return "newplangain";
+        }
+
+        return "redirect:/addplangain";
+    }
+
+    @RequestMapping(value = "/addplanexpense", method = RequestMethod.POST)
+    public String addplanexpense(@RequestParam String description,
+                                 @RequestParam String value,
+                            Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+
+        if ("".equals(description) ||"".equals(value) ||
+                !plainExpensesService.add(login, description, Long.parseLong(value))) {
+            return "newplanexpense";
+        }
+
+        return "redirect:/planexpense";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam(name = "toDelete[]", required = false)
-                                     long[] ids,
+                                 long[] ids,
                          Model model) {
         if (ids != null && ids.length > 0)
             userService.deleteUsers(ids);
 
         model.addAttribute("users", userService.getAllUsers());
         return "admin";
+    }
+
+    @RequestMapping(value = "/deleteperiod", method = RequestMethod.POST)
+    public String deleteperiod(@RequestParam(name = "toDelete[]", required = false)
+                                 long[] ids,
+                         Model model) {
+        if (ids != null && ids.length > 0)
+            accountingPeriodService.deletePeriods(ids);
+
+       // model.addAttribute("users", userService.getAllUsers());
+        return "redirect:/period";
     }
 
     @RequestMapping("/login")
@@ -133,6 +185,16 @@ public class MyController {
         return "newperiod";
     }
 
+    @RequestMapping("/newplangain")
+    public String newplangain() {
+        return "newplangain";
+    }
+
+    @RequestMapping("/newplanexpense")
+    public String newplanexpense() {
+        return "newplanexpense";
+    }
+
     @RequestMapping("/admin")
     public String admin(Model model) {
         model.addAttribute("users", userService.getAllUsers());
@@ -143,6 +205,28 @@ public class MyController {
     public String accountingPeriod(Model model) {
         model.addAttribute("periods", accountingPeriodService.getAllPeriods());
         return "periods";
+    }
+
+    @RequestMapping("/plangains")
+    public String planGains(Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+        model.addAttribute("plangains", plainGainsService.getAllForUser(login));
+        return "plangains";
+    }
+
+    @RequestMapping("/planexpenses")
+    public String planExpenses(Model model) {
+        User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        String login = user.getUsername();
+        model.addAttribute("planexpenses", plainExpensesService.getAllForUser(login));
+        return "planexpenses";
     }
 
     @RequestMapping("/unauthorized")

@@ -1,5 +1,6 @@
 package home_accounting.entity;
 
+import home_accounting.enums.PeriodStateEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ public class AccountingPeriod {
     @Enumerated(EnumType.STRING)
     private PeriodStateEnum state;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "custom_user_id")
     private CustomUser custom_user;
 

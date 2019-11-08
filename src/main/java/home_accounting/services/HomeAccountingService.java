@@ -1,6 +1,6 @@
 package home_accounting.services;
 
-import home_accounting.entity.AccountingEnum;
+import home_accounting.enums.AccountingEnum;
 import home_accounting.entity.AccountingPeriod;
 import home_accounting.entity.HomeAccounting;
 import home_accounting.repository.HomeAccountingRepository;
